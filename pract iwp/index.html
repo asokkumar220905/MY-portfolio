@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Govarithini — Frontend Developer & Designer</title>
+  <meta name="description" content="Portfolio of Govarithini — Frontend Developer & Designer" />
+  <style>
+    /* ====== Reset & base ====== */
+    :root{
+      --bg:#f7f8fb;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent:#4f46e5; /* indigo-600 */
+      --glass: rgba(255,255,255,0.6);
+      --radius:14px;
+      --shadow: 0 6px 22px rgba(15,23,42,0.08);
+      --max-w:1100px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      background: radial-gradient(ellipse at 10% 10%, rgba(79,70,229,0.06), transparent 10%),
+                  linear-gradient(180deg, var(--bg), #ffffff 45%);
+      color:#0f172a;
+      padding:24px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .wrap{width:100%;max-width:var(--max-w);}
+
+    /* ===== Header ===== */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      margin-bottom:24px;
+    }
+    .brand{
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+    .logo{
+      width:56px;height:56px;border-radius:13px;
+      background:linear-gradient(135deg,#4f46e5,#ec4899);
+      color:white;font-weight:700;display:flex;align-items:center;justify-content:center;
+      font-size:20px;box-shadow:var(--shadow);
+    }
+    .brand h1{margin:0;font-size:18px}
+    .brand p{margin:0;color:var(--muted);font-size:13px}
+
+    nav.desktop{display:flex;gap:12px;align-items:center}
+    nav.desktop a{font-size:14px;color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px}
+    nav.desktop a:hover{background:var(--glass);color:#0b1220}
+
+    .cta{
+      display:inline-flex;
+      gap:10px;align-items:center;background:var(--accent);color:white;padding:9px 14px;border-radius:12px;
+      text-decoration:none;font-weight:600;box-shadow:0 8px 24px rgba(79,70,229,0.12)
+    }
+
+    /* Mobile nav (simple) */
+    .mobile-toggle{display:none;border:0;background:transparent;font-size:20px}
+
+    /* ===== Hero ===== */
+    .hero{
+      display:grid;
+      grid-template-columns:1fr 380px;
+      gap:28px;
+      align-items:center;
+      margin-bottom:36px;
+    }
+
+    .hero-card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.9));
+      border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);
+      backdrop-filter: blur(6px);
+    }
+    .intro{color:var(--accent);font-weight:700;font-size:13px;margin:0 0 8px 0}
+    .name{font-size:34px;margin:0 0 8px 0;line-height:1}
+    .role{margin:0;color:var(--muted);font-size:15px}
+    .bio{margin-top:16px;color:#0b1220;opacity:0.9}
+    .hero-actions{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn{padding:10px 14px;border-radius:12px;text-decoration:none;font-weight:600}
+    .btn-outline{background:white;border:1px solid rgba(15,23,42,0.06);color:#0b1220}
+    .btn-primary{background:var(--accent);color:white;box-shadow:0 8px 22px rgba(79,70,229,0.12)}
+
+    .socials{display:flex;gap:10px;margin-top:10px}
+    .socials a{width:40px;height:40px;border-radius:10px;background:#fff;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(12,20,30,0.06);text-decoration:none;color:#0b1220}
+
+    .profile-photo{
+      width:100%;height:100%;border-radius:16px;overflow:hidden;display:block;
+      box-shadow:0 12px 34px rgba(12,20,30,0.06);
+    }
+    .photo-wrapper{border-radius:var(--radius);overflow:hidden}
+
+    /* ===== Sections ===== */
+    section{margin-bottom:28px}
+    h2.section-title{font-size:20px;margin:0 0 12px 0}
+    .grid{display:grid;gap:16px}
+    .projects-grid{
+      grid-template-columns:repeat(3,1fr);
+    }
+    .project{
+      background:var(--card);padding:14px;border-radius:12px;box-shadow:0 8px 28px rgba(12,20,30,0.04);
+      display:flex;flex-direction:column;gap:12px;transition:transform .18s ease, box-shadow .18s;
+      text-decoration:none;color:inherit;
+    }
+    .project:hover{transform:translateY(-6px);box-shadow:0 18px 48px rgba(12,20,30,0.08)}
+    .project img{width:100%;height:140px;object-fit:cover;border-radius:10px}
+    .project h3{margin:0;font-size:16px}
+    .project p{margin:0;color:var(--muted);font-size:14px}
+
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{font-size:12px;padding:6px 8px;border-radius:999px;background:#f1f5f9;color:#0b1220}
+
+    /* About & skills */
+    .about-grid{grid-template-columns:2fr 1fr;gap:18px}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow)}
+    .skill-list{display:flex;gap:10px;flex-wrap:wrap}
+    .skill{padding:8px 12px;border-radius:999px;background:#eef2ff;color:#1e293b;font-size:13px}
+
+    /* Contact */
+    .contact-form{display:grid;gap:12px}
+    .contact-form input,.contact-form textarea{
+      width:100%;padding:12px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);font-size:14px;
+    }
+    .contact-form button{padding:12px;border-radius:10px;border:0;background:var(--accent);color:white;font-weight:700}
+
+    /* Footer */
+    footer{color:var(--muted);text-align:center;padding:28px 0}
+
+    /* ===== Responsive ===== */
+    @media (max-width:1000px){
+      .projects-grid{grid-template-columns:repeat(2,1fr)}
+      .hero{grid-template-columns:1fr 320px}
+    }
+    @media (max-width:740px){
+      header{flex-direction:column;align-items:flex-start;gap:14px}
+      nav.desktop{display:none}
+      .mobile-toggle{display:inline-block}
+      .hero{grid-template-columns:1fr;gap:16px}
+      .projects-grid{grid-template-columns:1fr}
+      .about-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap" id="page">
+    <header>
+      <div class="brand">
+        <div class="logo">G</div>
+        <div>
+          <h1>Govarithini</h1>
+          <p>Frontend Developer & Designer</p>
+        </div>
+      </div>
+
+      <nav class="desktop" aria-label="primary">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="cta" href="#contact">Hire me</a>
+      </nav>
+
+      <button class="mobile-toggle" id="navToggle" aria-label="Open menu">☰</button>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-card">
+        <p class="intro">Hi, I’m</p>
+        <h2 class="name">Govarithini</h2>
+        <p class="role">Frontend Developer & Designer</p>
+        <p class="bio">I build clean, responsive web interfaces and delightful user experiences. Passionate about accessibility and fast-loading UIs.</p>
+
+        <div class="hero-actions">
+          <a class="btn btn-outline" href="/resume.pdf" target="_blank" rel="noopener">Download CV</a>
+          <a class="btn btn-primary" href="#projects">View Projects</a>
+        </div>
+
+        <div class="socials" style="margin-top:14px">
+          <a href="#" title="Github" aria-label="Github">🐙</a>
+          <a href="#" title="LinkedIn" aria-label="LinkedIn">🔗</a>
+          <a href="mailto:govarithini@example.com" title="Email" aria-label="Email">✉️</a>
+        </div>
+      </div>
+
+      <div class="photo-wrapper">
+        <!-- Replace with a real photo if available -->
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h2 class="section-title">Selected Projects</h2>
+
+      <div class="grid projects-grid">
+        <a class="project" href="#" target="_blank" rel="noopener">
+          <img src="https://images.unsplash.com/photo-1526378723036-2a2d7d4d1f3f?w=800&q=60&auto=format&fit=crop" alt="Project 1">
+          <h3>Learnify — Video Learning Platform</h3>
+          <p>Full-stack learning platform with video playback, notes, and quizzes.</p>
+          <div class="tags">
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">MongoDB</span>
+          </div>
+        </a>
+
+        <a class="project" href="#" target="_blank" rel="noopener">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=60&auto=format&fit=crop" alt="Project 2">
+          <h3>ShopEase — E-commerce Demo</h3>
+          <p>Product listing, filtering, and a polished checkout experience.</p>
+          <div class="tags">
+            <span class="tag">React</span>
+            <span class="tag">Stripe</span>
+            <span class="tag">Tailwind</span>
+          </div>
+        </a>
+
+        <a class="project" href="#" target="_blank" rel="noopener">
+          <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800&q=60&auto=format&fit=crop" alt="Project 3">
+          <h3>Design System Kit</h3>
+          <p>Reusable component library and tokens for multiple projects.</p>
+          <div class="tags">
+            <span class="tag">Storybook</span>
+            <span class="tag">CSS</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <h2 class="section-title">About</h2>
+      <div class="grid about-grid">
+        <div class="card">
+          <p>I’m a frontend developer who enjoys turning designs into functional, accessible, and performant interfaces. I take pride in writing maintainable code and collaborating with designers and product teams.</p>
+
+          <h3 style="margin-top:16px">Experience</h3>
+          <ul>
+            <li>2+ years building production React apps</li>
+            <li>Designed and shipped UI components across products</li>
+            <li>Experienced with Git, PR reviews, and CI/CD</li>
+          </ul>
+        </div>
+
+        <aside class="card">
+          <h3>Skills</h3>
+          <div class="skill-list" style="margin-top:12px">
+            <span class="skill">HTML</span>
+            <span class="skill">CSS</span>
+            <span class="skill">JavaScript</span>
+            <span class="skill">React</span>
+            <span class="skill">Responsive Design</span>
+            <span class="skill">Accessibility</span>
+          </div>
+
+          <div style="margin-top:16px">
+            <h4>Contact</h4>
+            <p>📍 Bengaluru, India</p>
+            <p>📧 <a href="mailto:govarithini@example.com">govarithini@example.com</a></p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="card">
+        <p>If you'd like to work together or say hi, send a message — I usually reply within a few days.</p>
+
+        <!-- Formspree example: replace 'YOUR_FORM_ID' with real ID from Formspree -->
+        <form id="contactForm" class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <input type="text" name="name" placeholder="Your name" required>
+          <input type="email" name="email" placeholder="Your email" required>
+          <input type="text" name="subject" placeholder="Subject" required>
+          <textarea name="message" placeholder="Message" rows="6" required></textarea>
+          <button type="submit">Send message</button>
+          <p id="formStatus" style="font-size:13px;color:var(--muted);margin:6px 0 0 0"></p>
+        </form>
+
+        <p style="margin-top:12px;color:var(--muted);font-size:13px">Or email directly: <a href="mailto:govarithini@example.com">govarithini@example.com</a></p>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Govarithini — Built with ❤️
+    </footer>
+  </div>
+
+  <script>
+    // Populate year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile nav toggle simple behavior (optional)
+    const navToggle = document.getElementById('navToggle');
+    navToggle && navToggle.addEventListener('click', () => {
+      const desktopNav = document.querySelector('nav.desktop');
+      if (!desktopNav) return;
+      if (desktopNav.style.display === 'flex') {
+        desktopNav.style.display = 'none';
+        navToggle.textContent = '☰';
+      } else {
+        desktopNav.style.display = 'flex';
+        navToggle.textContent = '✕';
+        desktopNav.style.flexDirection = 'column';
+        desktopNav.style.position = 'absolute';
+        desktopNav.style.right = '24px';
+        desktopNav.style.top = '80px';
+        desktopNav.style.background = 'white';
+        desktopNav.style.padding = '12px';
+        desktopNav.style.borderRadius = '12px';
+        desktopNav.style.boxShadow = '0 12px 30px rgba(2,6,23,0.08)';
+      }
+    });
+
+    // Contact form: show friendly status and prevent navigation on success
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+
+    if (form) {
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        status.textContent = 'Sending…';
+        // Use fetch to submit to Formspree (works without page reload)
+        fetch(form.action, {
+          method: form.method,
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
+        }).then(response => {
+          if (response.ok) {
+            status.textContent = 'Thanks — message sent!';
+            form.reset();
+          } else {
+            response.json().then(data => {
+              status.textContent = data.error || 'Oops — there was a problem.';
+            }).catch(() => {
+              status.textContent = 'Oops — there was a problem.';
+            });
+          }
+        }).catch(() => {
+          status.textContent = 'Network error — please try emailing directly.';
+        });
+      });
+    }
+  </script>
+</body>
+</html>
